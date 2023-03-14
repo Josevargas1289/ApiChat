@@ -1,11 +1,14 @@
 const express = require("express");
 const cors = require("cors");
 const morgan = require("morgan");
-const db = require("./utils/database")
+const db = require("./utils/database");
 const initModels = require("./models/init_models");
 const userRoutes = require("./routes/users.routes");
 const authRoutes = require("./routes/auth.routes");
-const errorHandlerRoutes = require("./routes/errorHandler.routes")
+const typesRoutes = require("./routes/types.router");
+const messageRoutes = require("./routes/messages.routes");
+const conversationRoutes = require("./routes/conversations.routes");
+const errorHandlerRoutes = require("./routes/errorHandler.routes");
 
 
 initModels();
@@ -24,6 +27,9 @@ db.authenticate()
 
 app.use(userRoutes);
 app.use(authRoutes);
+app.use(typesRoutes);
+app.use(conversationRoutes); 
+app.use(messageRoutes);
 
 app.get("/", (req, res)=>{
     res.send("welcome to y api")

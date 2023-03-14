@@ -23,6 +23,17 @@ class UserServices {
         }
     }
 
+    static async getAll(){
+        try {
+            const users = await Users.findAll({
+                attributes: ["id","userName", "email", "firstName", "lastName"]
+            });
+            return users
+        } catch (error) {
+            throw error;
+        }
+    }
+
 
 }
 
