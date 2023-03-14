@@ -2,8 +2,13 @@ const express = require("express");
 const cors = require("cors");
 const morgan = require("morgan");
 const db = require("./utils/database")
+const initModels = require("./models/init_models");
+const userRoutes = require("./routes/users.routes");
+const authRoutes = require("./routes/auth.routes");
+const errorHandlerRoutes = require("./routes/errorHandler.routes")
 
 
+initModels();
 const app = express();
 app.use(cors());
 app.use(morgan("dev"));
@@ -15,6 +20,17 @@ db.authenticate()
     console.log("Base de datos conectada");
 })
 .catch((error)=> console.log(error));
+
+
+app.use(userRoutes);
+app.use(authRoutes);
+
+app.get("/", (req, res)=>{
+    res.send("welcome to y api")
+})
+
+errorHandlerRoutes(app);
+
 
 db.sync({alter: true})
 .then(()=> console.log("Base de datos sync"))
