@@ -27,7 +27,7 @@ class conversationServices{
     static async getAll(){
         try {
             const conversations = await Conversations.findAll({
-                attributes: ["title", "isGroup"]
+                attributes: ["id","title", "isGroup"]
             });
             return conversations
         } catch (error) {
@@ -66,6 +66,17 @@ class conversationServices{
             
         }
     }
+
+    static async  delete(id) {
+        try {
+          const result = await Conversations.destroy({
+            where: {id}
+          })
+          return result
+        } catch (error) {
+          throw error
+        }
+      }
 
 }
 
