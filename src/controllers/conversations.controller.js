@@ -34,8 +34,19 @@ const getAllConversations = async (req, res, next) =>{
     }
 }
 
+const getConversationUsersMessages = async (req, res, next) => {
+    try {
+        const { conversationsId  } = req.params;
+        const conversationsUsersMessages = await conversationServices.getConversationsUsersMessages(conversationsId);
+        res.json(conversationsUsersMessages)
+    } catch (error) {
+        next(error) 
+    }
+}
+
 module.exports = {
     createConversationsSingle,
     createConversationsGroup,
     getAllConversations,
+    getConversationUsersMessages,
 }
