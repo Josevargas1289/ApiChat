@@ -5,9 +5,9 @@ const db = require("./utils/database");
 const initModels = require("./models/init_models");
 const userRoutes = require("./routes/users.routes");
 const authRoutes = require("./routes/auth.routes");
-const typesRoutes = require("./routes/types.router");
 const messageRoutes = require("./routes/messages.routes");
 const conversationRoutes = require("./routes/conversations.routes");
+const ParticipantsRoutes = require("./routes/participants.routes")
 const errorHandlerRoutes = require("./routes/errorHandler.routes");
 
 
@@ -27,9 +27,9 @@ db.authenticate()
 
 app.use(userRoutes);
 app.use(authRoutes);
-app.use(typesRoutes);
 app.use(conversationRoutes); 
 app.use(messageRoutes);
+app.use(ParticipantsRoutes); 
 
 app.get("/", (req, res)=>{
     res.send("welcome to y api")
@@ -41,8 +41,6 @@ errorHandlerRoutes(app);
 db.sync({alter: true})
 .then(()=> console.log("Base de datos sync"))
 .catch((error)=> console.log(error))
-
-
 
 
 app.listen(PORT, () =>{

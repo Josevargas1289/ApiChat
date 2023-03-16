@@ -25,7 +25,17 @@ const createConversationsGroup = async (req, res, next) =>{
 
 }
 
+const getAllConversations = async (req, res, next) =>{
+    try {
+        const data = await conversationServices.getAll()
+        res.json(data)
+    } catch (error) {
+        next(error);
+    }
+}
+
 module.exports = {
     createConversationsSingle,
-    createConversationsGroup
+    createConversationsGroup,
+    getAllConversations,
 }

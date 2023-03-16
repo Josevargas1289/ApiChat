@@ -20,6 +20,17 @@ class conversationServices{
         }
     }
 
+    static async getAll(){
+        try {
+            const conversations = await Conversations.findAll({
+                attributes: ["title", "isGroup"]
+            });
+            return conversations
+        } catch (error) {
+            throw error;
+        }
+    }
+
 }
 
 module.exports = conversationServices;

@@ -13,7 +13,17 @@ const createMessages = async (req, res, next)=>{
 
 }
 
+const getAllMessages = async (req, res, next) =>{
+    try {
+        const data = await MessageServices.getAll()
+        res.json(data)
+    } catch (error) {
+        next(error);
+    }
+}
+
 
 module.exports ={
-    createMessages
+    createMessages,
+    getAllMessages
 }

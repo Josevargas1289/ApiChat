@@ -19,7 +19,20 @@ const getAllUsers = async (req, res,next) =>{
     }
 }
 
+const getusersAndConversations = async (req, res, next)=>{
+    try {
+        const { userId } = req.params;
+        const usersAndConversations = await UserServices.getUsersAndConversations(userId)
+        res.json(usersAndConversations)
+    } catch (error) {
+        next(error)
+    }
+
+
+}
+
 module.exports = {
     createUser,
     getAllUsers,
+    getusersAndConversations
 }

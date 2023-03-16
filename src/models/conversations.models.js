@@ -13,19 +13,11 @@ const Conversations = db.define("conversations",{
         allowNull: false,
 
     },
-    typeId: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        field: "type_id",
-
+    isGroup: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false,
     },
-    usersId: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        field: "users_id"
-
-    },
-
+   
 },
 {
     timestamps: false,
